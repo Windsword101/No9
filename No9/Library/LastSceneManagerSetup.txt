@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/No9.unity
+=======
+- path: Assets/animator.unity
+>>>>>>> Animator
   isLoaded: 1
   isActive: 1
   isSubScene: 0
