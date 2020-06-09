@@ -11,14 +11,13 @@ public class Bullet : MonoBehaviour
     public float speed;
     [Header("子彈消滅時間")]
     public float deletetime;
-    // Start is called before the first frame update
+    
     void Start()
     {
         spriteRenderer = GameObject.Find("Player").GetComponent<Transform>();
         Destroy(gameObject, deletetime);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(gameObject.transform.position.x > spriteRenderer.position.x)
