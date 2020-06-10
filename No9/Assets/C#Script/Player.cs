@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     [Header("角色物件")]
     public SpriteRenderer spriteRenderer;
+    [Header("角色血量")]
+    public GameObject[] Health;
     [Header("移動速度")]
     public float speed;
     [Header("跳躍高度")]
@@ -19,12 +22,15 @@ public class Player : MonoBehaviour
     [Header("子彈音效")]
     public AudioSource shootingsound;
 
+    private int HeartNum = 3;
     private Rigidbody2D rig;
     private Animator ani;
     private bool isGround;
     private bool shootup = false;
     private float jump;
+    
 
+    
     /// <summary>
     /// 移動
     /// </summary>
@@ -39,8 +45,8 @@ public class Player : MonoBehaviour
         {
             spriteRenderer.flipX = true;
         }
-        rig.velocity = (Vector3.right * h * speed);
-        ani.SetBool("Run", Input.GetButton("Horizontal"));
+        rig.AddForce(Vector3.right * h * speed);
+        ani.SetBool("Run", Input.GetButton("Horizontal") && isGround == true);
     }
     /// <summary>
     /// 是否碰到地面
@@ -51,6 +57,23 @@ public class Player : MonoBehaviour
         if (selfbody.gameObject.tag == "ground")
         {
             isGround = true;
+        }
+        if(selfbody.gameObject.tag == "Enemy")
+        {
+            HeartNum--;
+
+            if(HeartNum == 2)
+            {
+                Health[0].SetActive(false);
+            }
+            else if(HeartNum == 1)
+            {
+                Health[1].SetActive(false);
+            }
+            else if (HeartNum == 0)
+            {
+                Health[2].SetActive(false);
+            }
         }
     }
     /// <summary>
@@ -72,7 +95,7 @@ public class Player : MonoBehaviour
         if (isGround && Input.GetKeyDown(KeyCode.X))
         {
             jump = 0;
-            rig.velocity =new Vector2(0, height);
+            rig.AddForce(new Vector2(0, height));
         }
         if (!isGround)
         {
@@ -114,7 +137,6 @@ public class Player : MonoBehaviour
         ani = GetComponent<Animator>();
         rig = GetComponent<Rigidbody2D>();
     }
-
 
     void Update()
     {

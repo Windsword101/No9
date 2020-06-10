@@ -40,10 +40,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5691720704132484200}
   - component: {fileID: 5691720704132484203}
-  - component: {fileID: 5691720704132484202}
   - component: {fileID: 5691720704132484205}
   - component: {fileID: 5691720704132484204}
   - component: {fileID: 5691720704132484207}
+  - component: {fileID: 88702827}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -118,26 +118,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5691720704132484202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5691720704132484206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcb7c850e3f24f7408214cf05f0515a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 5691720704132484203}
-  speed: 15
-  height: 2000
-  bullet: {fileID: 3385020914733800681, guid: 38724849bedbcef4ca8552874ce1eb2b, type: 3}
-  createobjetright: {fileID: 5691720704127353134}
-  createobjetleft: {fileID: 5691720705857657308}
-  createobjetup: {fileID: 5691720704181303292}
-  shootingsound: {fileID: 0}
 --- !u!95 &5691720704132484205
 Animator:
   serializedVersion: 3
@@ -205,14 +185,34 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 7
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &88702827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5691720704132484206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb7c850e3f24f7408214cf05f0515a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 5691720704132484203}
+  speed: 50
+  height: 2500
+  bullet: {fileID: 3385020914733800681, guid: 38724849bedbcef4ca8552874ce1eb2b, type: 3}
+  createobjetright: {fileID: 5691720704127353134}
+  createobjetleft: {fileID: 5691720705857657308}
+  createobjetup: {fileID: 5691720704181303292}
+  shootingsound: {fileID: 0}
 --- !u!1 &5691720704181303295
 GameObject:
   m_ObjectHideFlags: 0
