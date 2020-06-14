@@ -28,9 +28,9 @@ public class Player : MonoBehaviour
     private bool isGround;
     private bool shootup = false;
     private float jump;
-    
 
-    
+
+
     /// <summary>
     /// 移動
     /// </summary>
@@ -49,24 +49,25 @@ public class Player : MonoBehaviour
         ani.SetBool("Run", Input.GetButton("Horizontal") && isGround == true);
     }
     /// <summary>
-    /// 是否碰到地面
+    /// 是否碰到地面、扣血
     /// </summary>
     /// <param name="selfbody"></param>
     private void OnCollisionEnter2D(Collision2D selfbody)
     {
+
         if (selfbody.gameObject.tag == "ground")
         {
             isGround = true;
         }
-        if(selfbody.gameObject.tag == "Enemy")
+        if (selfbody.gameObject.tag == "Enemy")
         {
             HeartNum--;
-
-            if(HeartNum == 2)
+            ani.SetTrigger("Hurt");
+            if (HeartNum == 2)
             {
                 Health[0].SetActive(false);
             }
-            else if(HeartNum == 1)
+            else if (HeartNum == 1)
             {
                 Health[1].SetActive(false);
             }
@@ -86,6 +87,7 @@ public class Player : MonoBehaviour
         {
             isGround = false;
         }
+
     }
     /// <summary>
     /// 跳躍
@@ -96,11 +98,14 @@ public class Player : MonoBehaviour
         {
             jump = 0;
             rig.AddForce(new Vector2(0, height));
+            ani.SetTrigger("Jump");
         }
         if (!isGround)
         {
             jump += Time.deltaTime;
+
         }
+
         //ani.SetFloat("Jump", jump);
     }
     /// <summary>
@@ -110,6 +115,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
+            ani.SetTrigger("Stand");
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 shootup = true;
@@ -129,7 +135,7 @@ public class Player : MonoBehaviour
             }
             shootingsound.Play();
         }
-        ani.SetBool("Stand", Input.GetKey(KeyCode.C));
+        ani.SetBool("RunShot", Input.GetButton("Horizontal") && Input.GetKeyDown(KeyCode.C));
         ani.SetBool("ShotUp", Input.GetKey(KeyCode.UpArrow));
     }
     void Start()
@@ -143,5 +149,6 @@ public class Player : MonoBehaviour
         Move();
         Jump();
         Shoot();
+
     }
 }
