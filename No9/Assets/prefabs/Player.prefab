@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 5691720704132484204}
   - component: {fileID: 5691720704132484207}
   - component: {fileID: 88702827}
+  - component: {fileID: 757430878}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -217,6 +218,18 @@ MonoBehaviour:
   createobjetleft: {fileID: 5691720705857657308}
   createobjetup: {fileID: 5691720704181303292}
   shootingsound: {fileID: 0}
+--- !u!114 &757430878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5691720704132484206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ad69bf548668944a877f20eb3fe81f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5691720704181303295
 GameObject:
   m_ObjectHideFlags: 0
