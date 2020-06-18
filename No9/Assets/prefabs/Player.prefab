@@ -214,9 +214,9 @@ MonoBehaviour:
   speed: 50
   height: 2500
   bullet: {fileID: 3385020914733800681, guid: 38724849bedbcef4ca8552874ce1eb2b, type: 3}
-  createobjetright: {fileID: 5691720704127353134}
-  createobjetleft: {fileID: 5691720705857657308}
-  createobjetup: {fileID: 5691720704181303292}
+  createobjectright: {fileID: 5691720704127353134}
+  createobjectleft: {fileID: 5691720705857657308}
+  createobjectup: {fileID: 5691720704181303292}
   shootingsound: {fileID: 0}
 --- !u!114 &757430878
 MonoBehaviour:

@@ -16,9 +16,9 @@ public class Player : MonoBehaviour
     [Header("子彈物件")]
     public GameObject bullet;
     [Header("子彈生成點")]
-    public Transform createobjetright;
-    public Transform createobjetleft;
-    public Transform createobjetup;
+    public Transform createobjectright;
+    public Transform createobjectleft;
+    public Transform createobjectup;
     [Header("子彈音效")]
     public AudioSource shootingsound;
 
@@ -119,15 +119,15 @@ public class Player : MonoBehaviour
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 shootup = true;
-                Instantiate(bullet, createobjetup.position, createobjetup.rotation);
+                Instantiate(bullet, createobjectup.position, createobjectup.rotation);
             }
             if (spriteRenderer.flipX == false && shootup == false)
             {
-                Instantiate(bullet, createobjetright.position, createobjetright.rotation);
+                Instantiate(bullet, createobjectright.position, createobjectright.rotation);
             }
             if (spriteRenderer.flipX == true && shootup == false)
             {
-                Instantiate(bullet, createobjetleft.position, createobjetleft.rotation);
+                Instantiate(bullet, createobjectleft.position, createobjectleft.rotation);
             }
             else
             {
@@ -137,6 +137,18 @@ public class Player : MonoBehaviour
         }
         ani.SetBool("RunShot", Input.GetButton("Horizontal") && Input.GetKeyDown(KeyCode.C));
         ani.SetBool("ShotUp", Input.GetKey(KeyCode.UpArrow));
+    }
+    
+    private void Awake()
+    {
+        if(GameObject.FindGameObjectsWithTag("Player").Length > 1) 
+        {
+            Destroy(gameObject);
+        }
+        else 
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
     void Start()
     {
@@ -149,6 +161,7 @@ public class Player : MonoBehaviour
         Move();
         Jump();
         Shoot();
+        
 
     }
 }
