@@ -969,6 +969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63881327d8006f1448df4ed941276ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScreenSizeDropdown: {fileID: 1098512505}
 --- !u!1 &575513671
 GameObject:
   m_ObjectHideFlags: 0
