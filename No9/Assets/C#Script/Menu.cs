@@ -22,12 +22,15 @@ public class Menu : MonoBehaviour
         switch (ScreenSizeDropdown.value)
         {
             case 0:
-                Screen.SetResolution(1920, 1080, false);
+                Screen.SetResolution(1920, 1080, true);
                 break;
             case 1:
-                Screen.SetResolution(1280, 720, false);
+                Screen.SetResolution(1920, 1080, false);
                 break;
             case 2:
+                Screen.SetResolution(1280, 720, false);
+                break;
+            case 3:
                 Screen.SetResolution(800, 480, false);
                 break;
         }

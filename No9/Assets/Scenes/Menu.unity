@@ -1693,6 +1693,8 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
+    - m_Text: "\u5168\u9280\u5E55"
+      m_Image: {fileID: 0}
     - m_Text: 1920*1080
       m_Image: {fileID: 0}
     - m_Text: 1280*720
@@ -2999,7 +3001,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1920*1080
+  m_Text: "\u5168\u9280\u5E55"
 --- !u!222 &1451626386
 CanvasRenderer:
   m_ObjectHideFlags: 0
