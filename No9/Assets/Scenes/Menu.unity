@@ -1824,8 +1824,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 475156433}
-        m_MethodName: DeactivateModule
+      - m_Target: {fileID: 512332589}
+        m_MethodName: NextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
