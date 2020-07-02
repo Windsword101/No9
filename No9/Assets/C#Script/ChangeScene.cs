@@ -1,18 +1,24 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+
 public class ChangeScene : MonoBehaviour
 {
     public static string currentScene = "";
     public string toScene;
+    private Image loading;
     private GameObject player;
-    
-   
+    private Text text;
 
     private void Start()
     {
         currentScene = Application.loadedLevelName;
         player = GameObject.Find("Player");
-       
-
+        loading = GameObject.Find("Loading").GetComponent<Image>();
+        text = GameObject.Find("LoadingText").GetComponent<Text>();
+    }
+    private void Update()
+    {
+        
     }
 
     public void LoadScene()
@@ -27,7 +33,8 @@ public class ChangeScene : MonoBehaviour
 
         if (collision.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.Z))
         {
-
+            loading.enabled = true;
+            text.enabled = true;
             #region No9切換場景
             if (currentScene == "No9" && gameObject.name == "GoToHouse")
             {

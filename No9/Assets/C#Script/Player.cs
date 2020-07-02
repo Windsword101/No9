@@ -25,9 +25,10 @@ public class Player : MonoBehaviour
     private int HeartNum = 3;
     private Rigidbody2D rig;
     private Animator ani;
-    private bool isGround;
+    private bool isGround = true;
     private bool shootup = false;
-    private float jump;
+    private bool jump = false;
+    private float timer = 0;
 
 
 
@@ -96,13 +97,14 @@ public class Player : MonoBehaviour
     {
         if (isGround && Input.GetKeyDown(KeyCode.X))
         {
-            jump = 0;
+            jump = true;
             rig.AddForce(new Vector2(0, height));
             ani.SetTrigger("Jump");
+
         }
         if (!isGround)
         {
-            jump += Time.deltaTime;
+
 
         }
 
@@ -138,14 +140,14 @@ public class Player : MonoBehaviour
         ani.SetBool("RunShot", Input.GetButton("Horizontal") && Input.GetKeyDown(KeyCode.C));
         ani.SetBool("ShotUp", Input.GetKey(KeyCode.UpArrow));
     }
-    
+
     private void Awake()
     {
-        if(GameObject.FindGameObjectsWithTag("Player").Length > 1) 
+        if (GameObject.FindGameObjectsWithTag("Player").Length > 1)
         {
             Destroy(gameObject);
         }
-        else 
+        else
         {
             DontDestroyOnLoad(gameObject);
         }
@@ -158,10 +160,21 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (jump == true)
+        {
+            isGround = true;
+            timer += Time.deltaTime;
+            if (timer > 0.5f)
+            {
+                isGround = false;
+                jump = false;
+                timer = 0;
+            }
+        }
         Move();
         Jump();
         Shoot();
-        
+
 
     }
 }
