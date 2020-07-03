@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Canvas
   - Nextscene
+  - wall
   layers:
   - Default
   - TransparentFX
