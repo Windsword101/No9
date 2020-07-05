@@ -9,6 +9,7 @@ TagManager:
   - Canvas
   - Nextscene
   - wall
+  - mechanism
   layers:
   - Default
   - TransparentFX
