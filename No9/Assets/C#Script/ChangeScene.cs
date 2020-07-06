@@ -61,6 +61,11 @@ public class ChangeScene : MonoBehaviour
                 LoadScene();
                 player.transform.position = GameObject.Find("gotodungeon").GetComponent<Transform>().position;
             }
+            else if (currentScene == "No9" && gameObject.name == "GoToUnderwater")
+            {
+                LoadScene();
+                player.transform.position = GameObject.Find("gotounderwater").GetComponent<Transform>().position;
+            }
             #endregion
             #region house切換場景
             else if (currentScene == "house" && gameObject.name == "GoToNo9")
@@ -110,6 +115,14 @@ public class ChangeScene : MonoBehaviour
                 player.transform.position = GameObject.Find("gotono9").GetComponent<Transform>().position;
             }
             #endregion
+            #region underwater切换场景
+            else if (currentScene == "underwater" && gameObject.name == "GoToNo9")
+            {
+                LoadScene();
+                player.transform.position = GameObject.Find("gotono9").GetComponent<Transform>().position;
+            }
+            #endregion
+
 
 
         }

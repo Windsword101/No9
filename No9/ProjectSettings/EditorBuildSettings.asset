@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/church.unity
     guid: 6785a12d5c6a5c449acf7542837ae5b0
+  - enabled: 1
+    path: Assets/Scenes/underwater.unity
+    guid: 6319d9bdb33222a43aec9b846c2dcbc6
   m_configObjects: {}

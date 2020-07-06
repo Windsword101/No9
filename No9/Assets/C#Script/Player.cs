@@ -17,18 +17,19 @@ public class Player : MonoBehaviour
     public GameObject bullet;
     [Header("子彈生成點")]
     public Transform createobjectright;
-    public Transform createobjectleft;
     public Transform createobjectup;
     [Header("子彈音效")]
     public AudioSource shootingsound;
 
     private int HeartNum = 3;
+    private int jumpTimes = 0;
     private Rigidbody2D rig;
     private Animator ani;
     private bool isGround = true;
     private bool shootup = false;
     private bool jump = false;
     private float timer = 0;
+
 
 
 
@@ -40,14 +41,15 @@ public class Player : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         if (h > 0)
         {
-            spriteRenderer.flipX = false;
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
         else if (h < 0)
         {
-            spriteRenderer.flipX = true;
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
         rig.AddForce(Vector3.right * h * speed);
         ani.SetBool("Run", Input.GetButton("Horizontal") && isGround == true);
+
     }
     /// <summary>
     /// 是否碰到地面、扣血
@@ -59,6 +61,7 @@ public class Player : MonoBehaviour
         if (selfbody.gameObject.tag == "ground")
         {
             isGround = true;
+            jumpTimes = 0;
         }
         if (selfbody.gameObject.tag == "Enemy")
         {
@@ -97,6 +100,7 @@ public class Player : MonoBehaviour
     {
         if (isGround && Input.GetKeyDown(KeyCode.X))
         {
+            jumpTimes++;
             jump = true;
             rig.AddForce(new Vector2(0, height));
             ani.SetTrigger("Jump");
@@ -123,13 +127,9 @@ public class Player : MonoBehaviour
                 shootup = true;
                 Instantiate(bullet, createobjectup.position, createobjectup.rotation);
             }
-            if (spriteRenderer.flipX == false && shootup == false)
+            if (shootup == false)
             {
                 Instantiate(bullet, createobjectright.position, createobjectright.rotation);
-            }
-            if (spriteRenderer.flipX == true && shootup == false)
-            {
-                Instantiate(bullet, createobjectleft.position, createobjectleft.rotation);
             }
             else
             {
@@ -163,12 +163,12 @@ public class Player : MonoBehaviour
         if (jump == true)
         {
             isGround = true;
-            timer += Time.deltaTime;
-            if (timer > 0.5f)
+
+            if (jumpTimes > 1)
             {
                 isGround = false;
                 jump = false;
-                timer = 0;
+                jumpTimes = 0;
             }
         }
         Move();

@@ -35,17 +35,7 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        if(gameObject.transform.position.x > spriteRenderer.position.x)
-        {
-            transform.Translate(new Vector2(1, 0) * speed);
-        }
-        else if (gameObject.transform.position.x < spriteRenderer.position.x)
-        {
-            transform.Translate(new Vector2(-1, 0) * speed);
-        }
-        else if (gameObject.transform.position.y  > spriteRenderer.position.y )
-        {
-            transform.Translate(new Vector2(0, 1) * speed);
-        }
+        transform.Translate(new Vector2(1, 0) * speed);
+
     }
 }
