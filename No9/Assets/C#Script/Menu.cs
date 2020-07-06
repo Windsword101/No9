@@ -5,20 +5,22 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
+    bool ControlSound = true;
+    [Header("聲音按鈕")]
+    public Image SoundButtonImage;
+    [Header("聲音開啟圖")]
+    public Sprite SoundOpenSprite;
+    [Header("聲音關閉圖")]
+    public Sprite SoundCloseSprite;
+    [Header("聲音拉霸")]
+    public Slider SoundSlider;
     [Header("解析度下拉選單")]
     public Dropdown ScreenSizeDropdown;
-    public void NextScene()
-    {
-        Application.LoadLevel("No9");
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
-    }
 
     public void Update()
     {
+        AudioListener.volume = SoundSlider.value;
+        #region 解析度切換
         switch (ScreenSizeDropdown.value)
         {
             case 0:
@@ -34,6 +36,38 @@ public class Menu : MonoBehaviour
                 Screen.SetResolution(800, 480, false);
                 break;
         }
-        
+        #endregion
     }
+
+    #region 下一關
+    public void NextScene()
+    {
+        Application.LoadLevel("No9");
+    }
+    #endregion
+
+    #region 離開遊戲
+    public void Quit()
+    {
+        Application.Quit();
+    }
+    #endregion
+
+    #region 控制聲音
+    public void Control_Sound()
+    {
+        ControlSound = !ControlSound;
+        if (ControlSound == true)
+        {
+            AudioListener.pause = false;
+            SoundButtonImage.sprite = SoundOpenSprite;
+        }
+        else 
+        { 
+            AudioListener.pause = true;
+            SoundButtonImage.sprite = SoundCloseSprite;
+        }
+    }
+    #endregion
+   
 }
