@@ -42,7 +42,7 @@ public class Menu : MonoBehaviour
     #region 下一關
     public void NextScene()
     {
-        Application.LoadLevel("No9");
+        Application.LoadLevel("story");
     }
     #endregion
 

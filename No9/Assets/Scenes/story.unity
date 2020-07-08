@@ -278,10 +278,10 @@ RectTransform:
   m_Father: {fileID: 544672379}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 28.9, y: -327.9}
-  m_SizeDelta: {x: 920.1205, y: 462.6073}
+  m_AnchoredPosition: {x: 0.0015717, y: -11}
+  m_SizeDelta: {x: 1012.76807, y: -438.016}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &509230725
 MonoBehaviour:
@@ -501,10 +501,10 @@ RectTransform:
   m_Father: {fileID: 544672379}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 103, y: 238.9}
-  m_SizeDelta: {x: 542.71313, y: 78.55408}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -11, y: -288}
+  m_SizeDelta: {x: 542.71313, y: 306.78314}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1078913469
 MonoBehaviour:
@@ -579,10 +579,10 @@ RectTransform:
   m_Father: {fileID: 544672379}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -82.4, y: -0.019989014}
-  m_SizeDelta: {x: 1525.9478, y: 1920.0402}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.0015869141, y: 0}
+  m_SizeDelta: {x: -0.0029296875, y: -0.00012207031}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1725166730
 MonoBehaviour:
@@ -680,6 +680,7 @@ GameObject:
   - component: {fileID: 1968039157}
   - component: {fileID: 1968039155}
   - component: {fileID: 1968039160}
+  - component: {fileID: 1968039161}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -703,7 +704,7 @@ MonoBehaviour:
   scrollPos: {x: 188.5, y: 107}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
-  blockViewHeight: 412
+  blockViewHeight: 280
   zoom: 1
   scrollViewRect:
     serializedVersion: 2
@@ -714,7 +715,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1968039156}
   selectedCommands:
-  - {fileID: 1968039155}
+  - {fileID: 1968039160}
   variables: []
   description: 
   stepPause: 0
@@ -743,8 +744,7 @@ MonoBehaviour:
   textObject: {fileID: 509230721}
   text:
     stringRef: {fileID: 0}
-    stringVal: "{s=10}\nNo9\n\u6211\u5011\u5C07\u50B3\u9001\u60A8\u81F3\u672A\u77E5\u5340\u57DF\u5370\u65AF\u8305\u65AF{WC}\n\u7531\u65BC\u672C\u90E8\u4E0D\u65B7\u7684\u63A5\u53D7\u8A0A\u865F\n\u7279\u5225\u6D3E\u9063\u60A8\u524D\u5F80\u63A2\u67E5\n\u8ACB\u770B\u6E05\u4E8B\u4EF6\u7684\u771F\u76F8\u4E26\u5B8C\u6210\u4EFB\u52D9\ngood
-      luck...\n\n\n"
+    stringVal: "{s=10}\nNo9\n\u6211\u5011\u5C07\u50B3\u9001\u60A8\u81F3\u672A\u77E5\u5340\u57DF\u5370\u65AF\u8305\u65AF{WC}\n\u7531\u65BC\u672C\u90E8\u4E0D\u65B7\u7684\u63A5\u53D7\u8A0A\u865F\n\u7279\u5225\u6D3E\u9063\u60A8\u524D\u5F80\u8ABF\u67E5\n\n\n\n\n"
   description: 
   clearText: 1
   waitUntilFinished: 1
@@ -771,7 +771,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 359
     y: 171
-    width: 60
+    width: 78
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -781,6 +781,7 @@ MonoBehaviour:
   eventHandler: {fileID: 1968039158}
   commandList:
   - {fileID: 1968039157}
+  - {fileID: 1968039161}
   - {fileID: 1968039155}
   - {fileID: 1968039160}
   suppressAllAutoSelections: 0
@@ -801,7 +802,7 @@ MonoBehaviour:
   textObject: {fileID: 1078913467}
   text:
     stringRef: {fileID: 0}
-    stringVal: .........................................
+    stringVal: .....
   description: 
   clearText: 1
   waitUntilFinished: 1
@@ -857,6 +858,24 @@ MonoBehaviour:
   indentLevel: 0
   _sceneName:
     stringRef: {fileID: 0}
-    stringVal: Menu
+    stringVal: No9
   loadingImage: {fileID: 0}
   sceneNameOLD: 
+--- !u!114 &1968039161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968039153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3315ad2ebb85443909a1203d56d9344e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 4
+  indentLevel: 0
+  _duration:
+    floatRef: {fileID: 0}
+    floatVal: 2
+  durationOLD: 0
