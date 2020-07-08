@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
         }
         rig.AddForce(Vector3.right * h * speed);
         ani.SetBool("Run", Input.GetButton("Horizontal") && isGround == true);
+        ani.SetBool("Stand", h == 0 && Input.GetKeyDown(KeyCode.C));
+        ani.SetBool("RunShot", h > 0 && h < 0 && Input.GetKeyDown(KeyCode.C));
 
     }
     /// <summary>
@@ -62,6 +64,8 @@ public class Player : MonoBehaviour
         {
             isGround = true;
             jumpTimes = 0;
+
+
         }
         if (selfbody.gameObject.tag == "Enemy")
         {
@@ -90,6 +94,7 @@ public class Player : MonoBehaviour
         if (selfbodyexit.gameObject.tag == "ground")
         {
             isGround = false;
+          
         }
 
     }
@@ -137,8 +142,10 @@ public class Player : MonoBehaviour
             }
             shootingsound.Play();
         }
-        ani.SetBool("RunShot", Input.GetButton("Horizontal") && Input.GetKeyDown(KeyCode.C));
+
+
         ani.SetBool("ShotUp", Input.GetKey(KeyCode.UpArrow));
+        ani.SetBool("Duck", Input.GetKey(KeyCode.DownArrow));
     }
 
     private void Awake()
@@ -151,15 +158,22 @@ public class Player : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
+
     }
     void Start()
     {
         ani = GetComponent<Animator>();
         rig = GetComponent<Rigidbody2D>();
+
     }
 
+    private void FixedUpdate()
+    {
+        Move();
+    }
     void Update()
     {
+
         if (jump == true)
         {
             isGround = true;
@@ -171,7 +185,6 @@ public class Player : MonoBehaviour
                 jumpTimes = 0;
             }
         }
-        Move();
         Jump();
         Shoot();
 

@@ -703,7 +703,7 @@ MonoBehaviour:
   scrollPos: {x: 188.5, y: 107}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
-  blockViewHeight: 280
+  blockViewHeight: 412
   zoom: 1
   scrollViewRect:
     serializedVersion: 2
@@ -714,7 +714,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1968039156}
   selectedCommands:
-  - {fileID: 1968039160}
+  - {fileID: 1968039155}
   variables: []
   description: 
   stepPause: 0
@@ -843,7 +843,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1968039160
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
