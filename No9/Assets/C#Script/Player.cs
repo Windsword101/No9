@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         ani.SetBool("Run", Input.GetButton("Horizontal") && isGround == true);
         ani.SetBool("Stand", h == 0 && Input.GetKeyDown(KeyCode.C));
         ani.SetBool("RunShot", h > 0 && h < 0 && Input.GetKeyDown(KeyCode.C));
-
+        
     }
     /// <summary>
     /// 是否碰到地面、扣血
