@@ -18,17 +18,25 @@ public class Player : MonoBehaviour
     [Header("子彈生成點")]
     public Transform createobjectright;
     public Transform createobjectup;
+    public Transform duck;
+    public Transform cancelduck;
     [Header("子彈音效")]
     public AudioSource shootingsound;
+    [Header("連續射擊間隔")]
+    public float fireRate;
 
     private int HeartNum = 3;
     private int jumpTimes = 0;
     private Rigidbody2D rig;
     private Animator ani;
     private bool isGround = true;
+    private bool _isGround = true;
     private bool shootup = false;
     private bool jump = false;
+    private bool duckshot = false;
     private float timer = 0;
+    private float nextFire = 0;
+
 
 
 
@@ -41,17 +49,18 @@ public class Player : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         if (h > 0)
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);        
         }
         else if (h < 0)
         {
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
+    
         rig.AddForce(Vector3.right * h * speed);
         ani.SetBool("Run", Input.GetButton("Horizontal") && isGround == true);
         ani.SetBool("Stand", h == 0 && Input.GetKeyDown(KeyCode.C));
-        ani.SetBool("RunShot", h > 0 && h < 0 && Input.GetKeyDown(KeyCode.C));
-        
+        ani.SetBool("RunShot", (h > 0 || h < 0) && Input.GetKeyDown(KeyCode.C));
+
     }
     /// <summary>
     /// 是否碰到地面、扣血
@@ -64,7 +73,7 @@ public class Player : MonoBehaviour
         {
             isGround = true;
             jumpTimes = 0;
-
+            rig.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         }
         if (selfbody.gameObject.tag == "Enemy")
@@ -94,7 +103,7 @@ public class Player : MonoBehaviour
         if (selfbodyexit.gameObject.tag == "ground")
         {
             isGround = false;
-          
+
         }
 
     }
@@ -103,37 +112,46 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Jump()
     {
-        if (isGround && Input.GetKeyDown(KeyCode.X))
+        if ((isGround || jump) && Input.GetKeyDown(KeyCode.X))
         {
+            isGround = false;
             jumpTimes++;
             jump = true;
+            timer = 0;
             rig.AddForce(new Vector2(0, height));
-            ani.SetTrigger("Jump");
 
+            ani.SetTrigger("Jump");
         }
         if (!isGround)
         {
-
-
+            timer += Time.deltaTime;
+            if (timer > 2f)
+            {
+                timer = 0;
+                rig.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            }
         }
+        
 
-        //ani.SetFloat("Jump", jump);
     }
     /// <summary>
     /// 射擊
     /// </summary>
     private void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKey(KeyCode.C) && Time.time > nextFire)
         {
+            nextFire = Time.time + fireRate;
             ani.SetTrigger("Stand");
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 shootup = true;
-                Instantiate(bullet, createobjectup.position, createobjectup.rotation);
+             
+               Instantiate(bullet, createobjectup.position, createobjectup.rotation);
             }
             if (shootup == false)
             {
+              
                 Instantiate(bullet, createobjectright.position, createobjectright.rotation);
             }
             else
@@ -143,11 +161,22 @@ public class Player : MonoBehaviour
             shootingsound.Play();
         }
 
+        if (Input.GetKey(KeyCode.DownArrow)) duckshot = true;
+        if (Input.GetKeyUp(KeyCode.DownArrow)) duckshot = false;
+        if (duckshot == true)
+        {
+            createobjectright.position = duck.position;
+        }
+        if (duckshot == false)
+        {
+            createobjectright.position = cancelduck.position;
+        }
 
+        print("duck" + duckshot);
         ani.SetBool("ShotUp", Input.GetKey(KeyCode.UpArrow));
         ani.SetBool("Duck", Input.GetKey(KeyCode.DownArrow));
     }
-
+    
     private void Awake()
     {
         if (GameObject.FindGameObjectsWithTag("Player").Length > 1)
@@ -176,11 +205,8 @@ public class Player : MonoBehaviour
 
         if (jump == true)
         {
-            isGround = true;
-
-            if (jumpTimes > 1)
+            if (jumpTimes > 1  )
             {
-                isGround = false;
                 jump = false;
                 jumpTimes = 0;
             }
