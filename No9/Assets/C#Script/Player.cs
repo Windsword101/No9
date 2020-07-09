@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
         if (!isGround)
         {
             timer += Time.deltaTime;
-            if (timer > 2f)
+            if (timer > 2.5f)
             {
                 timer = 0;
                 rig.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
@@ -205,7 +205,7 @@ public class Player : MonoBehaviour
 
         if (jump == true)
         {
-            if (jumpTimes > 1  )
+            if (jumpTimes > 1 || timer >2f )
             {
                 jump = false;
                 jumpTimes = 0;
