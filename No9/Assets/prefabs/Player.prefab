@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 88702827}
   - component: {fileID: 757430878}
   - component: {fileID: 1898841649}
+  - component: {fileID: 1201864636}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -246,6 +247,7 @@ MonoBehaviour:
   cancelduck: {fileID: 673643842}
   shootingsound: {fileID: 0}
   fireRate: 0.4
+  tele: {fileID: 1201864636}
 --- !u!114 &757430878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +276,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.23636961}
   m_Size: {x: 0.53046703, y: 2.4644003}
   m_Direction: 0
+--- !u!114 &1201864636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5691720704132484206}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83a904d11c5c285458461507810a2943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5691720704181303295
 GameObject:
   m_ObjectHideFlags: 0

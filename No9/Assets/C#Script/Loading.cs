@@ -3,21 +3,30 @@ using UnityEngine.UI;
 
 public class Loading : MonoBehaviour
 {
+    public GameObject pause;
+    public GameObject player;
+    private bool _pause;
     private Image loading;
     private float timer;
     private Text text;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         loading = GameObject.Find("Loading").GetComponent<Image>();
         text = GameObject.Find("LoadingText").GetComponent<Text>();
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            _pause = !_pause;
+            pause.SetActive(_pause);
+        }
         if (loading.enabled == true)
         {
             timer += Time.deltaTime;
@@ -28,5 +37,15 @@ public class Loading : MonoBehaviour
                 timer = 0f;
             } 
         }
+    }
+    public void menu()
+    {
+        Application.LoadLevel("Menu");
+        pause.SetActive(false);
+        player.SetActive(false);
+    }
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

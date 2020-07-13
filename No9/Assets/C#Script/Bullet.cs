@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEditor.U2D;
 using UnityEditorInternal;
 using UnityEngine;
@@ -23,6 +24,22 @@ public class Bullet : MonoBehaviour
         {
             Destroy(collision.gameObject);
             Destroy(gameObject);
+            GameObject exp = Instantiate(Effect, collision.transform.position, collision.transform.rotation);
+            Destroy(exp, EffectTime);
+        }
+        if (collision.gameObject.name == "BossTeleport")
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+            BossTeleport.teleport = true;
+            GameObject exp = Instantiate(Effect, collision.transform.position, collision.transform.rotation);
+            Destroy(exp, EffectTime);
+        }
+        if (collision.gameObject.name == "BossJump")
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+            BossJump.doublejump = true;
             GameObject exp = Instantiate(Effect, collision.transform.position, collision.transform.rotation);
             Destroy(exp, EffectTime);
         }

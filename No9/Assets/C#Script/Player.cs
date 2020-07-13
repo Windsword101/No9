@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     public AudioSource shootingsound;
     [Header("連續射擊間隔")]
     public float fireRate;
+    public Teleport tele;
+
 
     private int HeartNum = 3;
     private int jumpTimes = 0;
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
 
 
 
+
     /// <summary>
     /// 移動
     /// </summary>
@@ -49,13 +52,13 @@ public class Player : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         if (h > 0)
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);        
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
         else if (h < 0)
         {
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
-    
+
         rig.AddForce(Vector3.right * h * speed);
         ani.SetBool("Run", Input.GetButton("Horizontal") && isGround == true);
         ani.SetBool("Stand", h == 0 && Input.GetKeyDown(KeyCode.C));
@@ -115,23 +118,26 @@ public class Player : MonoBehaviour
         if ((isGround || jump) && Input.GetKeyDown(KeyCode.X))
         {
             isGround = false;
-            jumpTimes++;
-            jump = true;
             timer = 0;
             rig.AddForce(new Vector2(0, height));
+            if (BossJump.doublejump == true)
+            {
+                jumpTimes++;
+                jump = true;
+            }
 
             ani.SetTrigger("Jump");
         }
         if (!isGround)
         {
             timer += Time.deltaTime;
-            if (timer > 2.5f)
+            if (timer > 2f)
             {
                 timer = 0;
                 rig.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
             }
         }
-        
+
 
     }
     /// <summary>
@@ -146,12 +152,12 @@ public class Player : MonoBehaviour
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 shootup = true;
-             
-               Instantiate(bullet, createobjectup.position, createobjectup.rotation);
+
+                Instantiate(bullet, createobjectup.position, createobjectup.rotation);
             }
             if (shootup == false)
             {
-              
+
                 Instantiate(bullet, createobjectright.position, createobjectright.rotation);
             }
             else
@@ -176,9 +182,10 @@ public class Player : MonoBehaviour
         ani.SetBool("ShotUp", Input.GetKey(KeyCode.UpArrow));
         ani.SetBool("Duck", Input.GetKey(KeyCode.DownArrow));
     }
-    
+
     private void Awake()
     {
+        Health = GameObject.FindGameObjectsWithTag("Health");
         if (GameObject.FindGameObjectsWithTag("Player").Length > 1)
         {
             Destroy(gameObject);
@@ -202,10 +209,13 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-
+        if (BossTeleport.teleport == true)
+        {
+            tele.enabled = true;
+        }
         if (jump == true)
         {
-            if (jumpTimes > 1 || timer >2f )
+            if (jumpTimes > 1 || timer > 1.9f)
             {
                 jump = false;
                 jumpTimes = 0;
