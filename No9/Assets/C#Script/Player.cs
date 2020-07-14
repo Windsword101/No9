@@ -20,11 +20,13 @@ public class Player : MonoBehaviour
     public Transform createobjectup;
     public Transform duck;
     public Transform cancelduck;
-    [Header("子彈音效")]
-    public AudioSource shootingsound;
+    [Header("子彈、受傷音效")]
+    public AudioSource shootingsound, hurtsound;
     [Header("連續射擊間隔")]
     public float fireRate;
     public Teleport tele;
+    public GameObject _Light;
+    private bool _light = false;
 
 
     private int HeartNum = 3;
@@ -182,6 +184,17 @@ public class Player : MonoBehaviour
         ani.SetBool("ShotUp", Input.GetKey(KeyCode.UpArrow));
         ani.SetBool("Duck", Input.GetKey(KeyCode.DownArrow));
     }
+    /// <summary>
+    /// 手電筒開關
+    /// </summary>
+    private void Light()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            _light = !_light;
+            _Light.SetActive(_light);
+        }
+    }
 
     private void Awake()
     {
@@ -223,7 +236,7 @@ public class Player : MonoBehaviour
         }
         Jump();
         Shoot();
-
+        Light();
 
     }
 }

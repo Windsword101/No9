@@ -42,7 +42,6 @@ public class Loading : MonoBehaviour
     {
         Application.LoadLevel("Menu");
         pause.SetActive(false);
-        player.SetActive(false);
     }
     public void Quit()
     {

@@ -11,6 +11,7 @@ public class Teleport : MonoBehaviour
         teleport = GameObject.Find("teleport");
         player = GameObject.Find("Player");
         grass = GameObject.Find("grass");
+        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     

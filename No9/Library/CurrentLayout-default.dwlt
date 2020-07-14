@@ -116,7 +116,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 61998
+  controlID: 50
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 442}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 62090
+  controlID: 85
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 62072
+  controlID: 56
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -241,8 +241,8 @@ MonoBehaviour:
     y: 0
     width: 434
     height: 578
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -340,7 +340,7 @@ MonoBehaviour:
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
-  m_MaximizeOnPlay: 1
+  m_MaximizeOnPlay: 0
   m_UseMipMap: 0
   m_VSyncEnabled: 0
   m_Gizmos: 0
@@ -361,7 +361,7 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
     m_HSlider: 0
-    m_VSlider: 0
+    m_VSlider: 1
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
@@ -374,20 +374,20 @@ MonoBehaviour:
       y: 21
       width: 1595
       height: 378
-    m_Scale: {x: 0.35, y: 0.35}
-    m_Translation: {x: 797.5, y: 189}
+    m_Scale: {x: 0.36944443, y: 0.36944443}
+    m_Translation: {x: 797.5, y: 188.99998}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -2278.5715
-      y: -540
-      width: 4557.143
-      height: 1080
+      x: -2158.6467
+      y: -511.57892
+      width: 4317.2935
+      height: 1023.15796
     m_MinimalGUI: 1
-  m_defaultScale: 0.35
+  m_defaultScale: 0.36944443
   m_LastWindowPixelSize: {x: 1595, y: 399}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
@@ -430,9 +430,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -64.90408, y: -14.119929, z: -206.11012}
+    m_Target: {x: 88.25605, y: -84.005455, z: -239.215}
     speed: 2
-    m_Value: {x: -64.90408, y: -14.119929, z: -206.11012}
+    m_Value: {x: 88.25605, y: -84.005455, z: -239.215}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -482,9 +482,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 124.72739
+    m_Target: 120.02468
     speed: 2
-    m_Value: 124.72739
+    m_Value: 120.02468
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -704,9 +704,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: e29f0100
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 46dffbff50f6fbff62f7fbff34fdfbffe600fcff0a0efcff8c5bfcff328afcff20b9fcffe2bffcff64f7fcff74f7fcff7cf7fcff86f7fcff6600fdffd400fdff8801fdfff801fdff1e15fdff3678fdff5e79fdffa8a9fdff1eacfdffbaadfdff6444feff7e47feff984afeffd64dfeff28aafeff2cb1feff30b5feff7ccbfeff56d3feffc6d4feff96ddfeff38e2feffceeefeffdef4feff1a16ffffbe1effff0441ffff6861ffffa064ffff84c5fffff4ffffff54a50000c4a6000098a70000d0a700001cc1000060c30000d6c40000f6c500009ed60000e2d600000ed700001cd7000004d80000b8eb0000dceb0000f4ff0000da060100fe060100020a0100ec0f01001614010046140100e2290100182a010024390100943a0100f03a01004c3b0100b43b0100cc680100d66f0100267001006070010036730100b4740100d2740100048b0100ba91010014920100
+      m_ExpandedIDs: 56fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -800,20 +800,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/FuturisticGunSoundFX/GunShot
+    - Assets/Scenes
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/FuturisticGunSoundFX/GunShot
+  - Assets/Scenes
   m_LastFoldersGridSize: 16
-  m_LastProjectPath: C:\Users\409-01\Desktop\Game_Class\No9\No9
+  m_LastProjectPath: C:\Users\409-01\Desktop\Yun\No9\No9
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 4}
-    m_SelectedIDs: 329f0100
-    m_LastClickedID: 106290
-    m_ExpandedIDs: 00000000d0a10000eaa8000010a900000aba00000cba000022ba00004eba00009cba0000f21d0100ca9e0100d29e0100d89e01002c9f010000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: e8620000
+    m_LastClickedID: 25320
+    m_ExpandedIDs: 00000000d44600005462000056620000586200005a6200005c6200005e620000606200006262000064620000666200006862000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -841,7 +841,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d0a10000ee1d0100f21d010000ca9a3b
+    m_ExpandedIDs: 00000000d44600005462000056620000586200005a6200005c6200005e6200006062000062620000646200006662000068620000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -869,21 +869,21 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c623000000000000
+    m_ExpandedInstanceIDs: c62300000000000010aa0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: PowUp_01
-      m_OriginalName: PowUp_01
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 106240
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
@@ -918,9 +918,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1155
+    x: 1596
     y: 651
-    width: 847
+    width: 432
     height: 708
   m_ViewDataDictionary: {fileID: 0}
 --- !u!114 &22

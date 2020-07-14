@@ -17,6 +17,15 @@ public class Menu : MonoBehaviour
     [Header("解析度下拉選單")]
     public Dropdown ScreenSizeDropdown;
 
+    private GameObject player;
+
+    private void Awake()
+    {
+        player = GameObject.Find("Player");
+        player.transform.position = new Vector2(-5.96f, -2.1f);
+        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
+    }
+
     public void Update()
     {
         AudioListener.volume = SoundSlider.value;
