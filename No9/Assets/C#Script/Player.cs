@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
         rig.AddForce(Vector3.right * h * speed);
         ani.SetBool("Run", Input.GetButton("Horizontal") && isGround == true);
         ani.SetBool("Stand", h == 0 && Input.GetKeyDown(KeyCode.C));
-        ani.SetBool("RunShot", (h > 0 || h < 0) && Input.GetKeyDown(KeyCode.C));
+        ani.SetBool("RunShot", (h > 0 || h < 0) && Input.GetKey(KeyCode.C));
 
     }
     /// <summary>
