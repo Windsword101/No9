@@ -112391,11 +112391,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hero
       objectReference: {fileID: 0}
-    - target: {fileID: 3338434297496729389, guid: 6eba6b4f92d714a419977ee1e9564785,
-        type: 3}
-      propertyPath: m_FlipX
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7325893047568510594, guid: 6eba6b4f92d714a419977ee1e9564785,
         type: 3}
       propertyPath: m_LocalPosition.x

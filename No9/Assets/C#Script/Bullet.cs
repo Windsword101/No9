@@ -38,7 +38,14 @@ public class Bullet : MonoBehaviour
             GameObject exp = Instantiate(Effect, collision.transform.position, collision.transform.rotation);
             Destroy(exp, EffectTime);
         }
+        if (collision.gameObject.name == "Hero")
+        {
+            Destroy(gameObject);
+            collision.gameObject.GetComponent<SwordBoss>().Hurt();
+        }
     }
+    
+    
     void Start()
     {
         spriteRenderer = GameObject.Find("Player").GetComponent<Transform>();

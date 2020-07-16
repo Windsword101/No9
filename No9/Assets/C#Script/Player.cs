@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
             rig.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         }
-        if (selfbody.gameObject.tag == "Enemy")
+        if (selfbody.gameObject.tag == "Enemy" || selfbody.gameObject.tag == "SwordBoss")
         {
             HeartNum--;
             ani.SetTrigger("Hurt");

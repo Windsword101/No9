@@ -5,11 +5,12 @@ public class Loading : MonoBehaviour
 {
     public GameObject pause;
     public GameObject player;
+    public GameObject BossHp;
     private bool _pause;
     private Image loading;
     private float timer;
     private Text text;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,21 +23,8 @@ public class Loading : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            _pause = !_pause;
-            pause.SetActive(_pause);
-        }
-        if (loading.enabled == true)
-        {
-            timer += Time.deltaTime;
-            if (timer >= 0.5f) 
-            {
-                loading.enabled = false;
-                text.enabled = false;
-                timer = 0f;
-            } 
-        }
+        _Loading();
+        Bosshp();
     }
     public void menu()
     {
@@ -46,5 +34,31 @@ public class Loading : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+    private void _Loading()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            _pause = !_pause;
+            pause.SetActive(_pause);
+        }
+        if (loading.enabled == true)
+        {
+            timer += Time.deltaTime;
+            if (timer >= 0.5f)
+            {
+                loading.enabled = false;
+                text.enabled = false;
+                timer = 0f;
+            }
+        }
+    }
+    private void Bosshp()
+    {
+        if (Application.loadedLevelName == "Dungeon")
+            BossHp.SetActive(true);
+        else BossHp.SetActive(false);
+
+
     }
 }

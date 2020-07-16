@@ -12,6 +12,8 @@ TagManager:
   - mechanism
   - Teleport
   - Health
+  - SwordBoss
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX
