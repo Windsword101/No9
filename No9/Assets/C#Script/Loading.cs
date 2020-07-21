@@ -55,8 +55,7 @@ public class Loading : MonoBehaviour
     }
     private void Bosshp()
     {
-        if (Application.loadedLevelName == "Dungeon")
-            BossHp.SetActive(true);
+        if (Application.loadedLevelName == "Dungeon") BossHp.SetActive(true);
         else BossHp.SetActive(false);
 
 

@@ -22,6 +22,7 @@ public class SwordBoss : Enemy1
     }
     private void Update()
     {
+        sliderHp = GameObject.Find("Sliderhp").GetComponent<Image>();
         Attack();
         if (scripthp > 0) Chase();
         Dead();

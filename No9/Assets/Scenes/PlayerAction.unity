@@ -259,18 +259,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &463158556 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3794136086264788675, guid: 6a67c167c37ca1c4789afe78fa576d98,
-    type: 3}
-  m_PrefabInstance: {fileID: 1698395636}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,7 +505,7 @@ PrefabInstance:
     - target: {fileID: 1986773103, guid: 6eba6b4f92d714a419977ee1e9564785, type: 3}
       propertyPath: sliderHp
       value: 
-      objectReference: {fileID: 463158556}
+      objectReference: {fileID: 0}
     - target: {fileID: 776816613333562684, guid: 6eba6b4f92d714a419977ee1e9564785,
         type: 3}
       propertyPath: m_Name
@@ -734,6 +722,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BossHp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279013447680346973, guid: 6a67c167c37ca1c4789afe78fa576d98,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4402700439716294588, guid: 6a67c167c37ca1c4789afe78fa576d98,
         type: 3}
