@@ -5,9 +5,9 @@ public class ChangeScene : MonoBehaviour
 {
     public static string currentScene = "";
     public string toScene;
-    private Image loading;
+    private Image loading,dialogue;
     private GameObject player;
-    private Text text;
+    private Text text,dialogueText;
 
     private void Start()
     {
@@ -15,6 +15,8 @@ public class ChangeScene : MonoBehaviour
         player = GameObject.Find("Player");
         loading = GameObject.Find("Loading").GetComponent<Image>();
         text = GameObject.Find("LoadingText").GetComponent<Text>();
+        dialogue = GameObject.Find("IntoDialogue").GetComponent<Image>();
+        dialogueText = GameObject.Find("dialogueText").GetComponent<Text>();
     }
     private void Update()
     {
@@ -125,6 +127,23 @@ public class ChangeScene : MonoBehaviour
 
 
 
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            dialogue.enabled = true;
+            dialogueText.enabled = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")  
+        {
+            dialogue.enabled = false;
+            dialogueText.enabled = false;
         }
     }
 
