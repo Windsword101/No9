@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8179392416594563899}
   - component: {fileID: 7382113320616724667}
   - component: {fileID: 2212012879216534631}
+  - component: {fileID: 6615691476888784107}
+  - component: {fileID: -1093759440011530701}
   m_Layer: 0
   m_Name: Jumper
   m_TagString: Enemy
@@ -118,3 +120,42 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.21}
   serializedVersion: 2
   m_Radius: 1.14
+--- !u!114 &6615691476888784107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3322439602785578054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b31d09c1974b40343827ca6d06eccb7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 500
+  ChaseDistance: 3
+  timer: 0
+  rb: {fileID: 0}
+  height: 500
+  isGround: 0
+--- !u!50 &-1093759440011530701
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3322439602785578054}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

@@ -3,14 +3,18 @@ using UnityEngine;
 
 public class Enemy1 : MonoBehaviour
 {
-    public float speed;
-    public float ChaseDistance;
-    protected Transform target;
-    private SpriteRenderer sprite;
+    public float speed = 0.5f;
+    public float ChaseDistance = 3;
     public float timer;
+    public Rigidbody2D rb;
+    public Transform groundDetection;
+    private SpriteRenderer sprite;
     private float rad;
+    protected Transform target;
     private void Start()
     {
+        groundDetection = GetComponentInChildren<Transform>();
+        rb = GetComponent<Rigidbody2D>();
         rad = Random.Range(0f, 6f);
         timer = rad;
         target = GameObject.Find("Player").GetComponent<Transform>();
@@ -20,16 +24,18 @@ public class Enemy1 : MonoBehaviour
     {
         Move();
         Chase();
-        
+
     }
 
+    
     protected virtual void Move()
     {
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 2f);
         if (Vector2.Distance(transform.position, target.position) > ChaseDistance)
         {
             transform.Translate(Vector2.right * speed * Time.deltaTime);
             timer += Time.deltaTime;
-            if (timer > 3f)
+            if (timer > 3f || groundInfo.collider == false)
             {
                 transform.Rotate(0f, 180f, 0f);
                 timer = 0;
@@ -44,18 +50,16 @@ public class Enemy1 : MonoBehaviour
             if (transform.position.x > target.transform.position.x)
             {
                 transform.eulerAngles = new Vector2(0, 180);
-                //sprite.flipX = false;
             }
             if (transform.position.x < target.transform.position.x)
             {
                 transform.eulerAngles = new Vector2(0, 0);
-                //sprite.flipX = true;
             }
         }
     }
 }
-    
-        
-    
+
+
+
 
 
