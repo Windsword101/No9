@@ -13,7 +13,6 @@ public class Enemy1 : MonoBehaviour
     protected Transform target;
     private void Start()
     {
-        groundDetection = GetComponentInChildren<Transform>();
         rb = GetComponent<Rigidbody2D>();
         rad = Random.Range(0f, 6f);
         timer = rad;

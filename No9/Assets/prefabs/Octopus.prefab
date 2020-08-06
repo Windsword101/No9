@@ -137,6 +137,7 @@ MonoBehaviour:
   ChaseDistance: 3
   timer: 0
   rb: {fileID: 0}
+  groundDetection: {fileID: 9155554948898809467}
 --- !u!50 &-8221638965573037073
 Rigidbody2D:
   serializedVersion: 4
@@ -182,7 +183,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3111850380104478427}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.777, y: 0, z: 0}
+  m_LocalPosition: {x: 1.04, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 464592822764830211}
