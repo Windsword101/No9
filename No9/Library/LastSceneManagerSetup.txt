@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/church.unity
+- path: C:/Users/409-01/Desktop/Game_Class/slay-the-spire-map-in-unity/Assets/Scenes/SampleScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
