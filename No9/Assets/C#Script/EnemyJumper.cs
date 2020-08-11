@@ -9,7 +9,10 @@ public class EnemyJumper : Enemy1
     public int height = 500;
     public bool isGround = false;
 
-
+    private void Awake()
+    {
+        
+    }
     private void Update()
     {
         if (isGround == false) JumpChase();
