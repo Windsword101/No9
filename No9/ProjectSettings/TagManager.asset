@@ -14,6 +14,7 @@ TagManager:
   - Health
   - SwordBoss
   - PlayerBullet
+  - DeathZoon
   layers:
   - Default
   - TransparentFX
