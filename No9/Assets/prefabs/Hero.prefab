@@ -218,6 +218,8 @@ MonoBehaviour:
   speed: 3
   ChaseDistance: 5
   timer: 0
+  rb: {fileID: 0}
+  groundDetection: {fileID: 0}
   hp: 100
-  damage: 100
+  damage: 5
   sliderHp: {fileID: 0}

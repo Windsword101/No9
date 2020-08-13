@@ -43,6 +43,11 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
             collision.gameObject.GetComponent<SwordBoss>().Hurt();
         }
+        if (collision.gameObject.name == "smallHero")
+        {
+            Destroy(gameObject);
+            collision.gameObject.GetComponent<smallSwordBoss>().Hurt();
+        }
     }
     
     

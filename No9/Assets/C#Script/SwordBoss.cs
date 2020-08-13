@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class SwordBoss : Enemy1
@@ -18,7 +17,7 @@ public class SwordBoss : Enemy1
         rig = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         scripthp = hp;
-       
+
     }
     private void Update()
     {
@@ -35,7 +34,7 @@ public class SwordBoss : Enemy1
             timer += Time.deltaTime;
             ChaseDistance = 50f;
             ani.SetTrigger("Run");
-            if (Vector2.Distance(transform.position, target.position) < 3 && timer >2f)
+            if (Vector2.Distance(transform.position, target.position) < 3 && timer > 2f)
             {
                 ani.SetTrigger("Attack");
                 timer = 0;
@@ -46,21 +45,21 @@ public class SwordBoss : Enemy1
     {
         scripthp -= damage;
         sliderHp.fillAmount = scripthp / hp;
-        
+
     }
-    
+
     private void Dead()
     {
-        if(scripthp <= 0)
+        if (scripthp <= 0)
         {
             ani.SetTrigger("Dead");
-            transform.Translate(new Vector2(0,0));
+            transform.Translate(new Vector2(0, 0));
             Destroy(gameObject, 3f);
         }
     }
-    
-    
-        
-    
+
+
+
+
 
 }

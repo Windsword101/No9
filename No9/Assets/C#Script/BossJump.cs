@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossJump : MonoBehaviour
 {
-    public static bool doublejump = true;
+    public static bool doublejump = false;
     
     private void Awake()
     {
