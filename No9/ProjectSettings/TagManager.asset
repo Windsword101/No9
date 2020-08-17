@@ -15,6 +15,7 @@ TagManager:
   - SwordBoss
   - PlayerBullet
   - DeathZoon
+  - BossOctopus
   layers:
   - Default
   - TransparentFX
@@ -24,9 +25,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Player
+  - submarine
+  - bullet
   - 
   - 
   - 

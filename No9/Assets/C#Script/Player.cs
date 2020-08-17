@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using UnityEngine.U2D;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -8,7 +10,9 @@ public class Player : MonoBehaviour
     [Header("角色物件")]
     public SpriteRenderer spriteRenderer;
     [Header("角色血量")]
-    public GameObject[] Health;
+    public float HP = 99f;
+    private float _scripthp;
+    private Text HPText;
     [Header("移動速度")]
     public float speed;
     [Header("跳躍高度")]
@@ -26,20 +30,28 @@ public class Player : MonoBehaviour
     public float fireRate;
     public Teleport tele;
     public GameObject _Light;
-    private bool _light = false;
+    //按越久跳躍高
+    public float jumpTime;
+    public GameObject submarine, swimblock, submarineblock;
 
 
-    private int HeartNum = 3;
+
+    //二段跳
     private int jumpTimes = 0;
     private Rigidbody2D rig;
     private Animator ani;
     private bool isGround = true;
     private bool _isGround = true;
+    private bool isJumping = false;
     private bool shootup = false;
     private bool jump = false;
     private bool duckshot = false;
+    private bool _light = false;
+    private bool onsubmarine = false;
     private float timer = 0;
     private float nextFire = 0;
+    //按越久跳躍高
+    private float jumpTimeCounter;
 
 
 
@@ -73,7 +85,6 @@ public class Player : MonoBehaviour
     /// <param name="selfbody"></param>
     private void OnCollisionEnter2D(Collision2D selfbody)
     {
-
         if (selfbody.gameObject.tag == "ground")
         {
             isGround = true;
@@ -81,22 +92,10 @@ public class Player : MonoBehaviour
             rig.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         }
-        if (selfbody.gameObject.tag == "Enemy" || selfbody.gameObject.tag == "SwordBoss")
+        if (selfbody.gameObject.tag == "Enemy" || selfbody.gameObject.tag == "SwordBoss" || selfbody.gameObject.tag == "BossOctopus")
         {
-            HeartNum--;
+            _scripthp -= 8;
             ani.SetTrigger("Hurt");
-            if (HeartNum == 2)
-            {
-                Health[0].SetActive(false);
-            }
-            else if (HeartNum == 1)
-            {
-                Health[1].SetActive(false);
-            }
-            else if (HeartNum == 0)
-            {
-                Health[2].SetActive(false);
-            }
         }
     }
     /// <summary>
@@ -112,6 +111,23 @@ public class Player : MonoBehaviour
         }
 
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "submarine" && Input.GetKeyDown(KeyCode.Z))
+        {
+            submarine.transform.SetParent(gameObject.transform);
+            submarine.transform.localPosition = new Vector3(0, 0, 0);
+            submarine.transform.rotation = gameObject.transform.rotation;
+            submarine.GetComponent<Collider2D>().isTrigger = false;
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            BossSwim.swim = false;
+            swimblock.GetComponent<Collider2D>().enabled = true;
+            swimblock.GetComponent<TilemapRenderer>().enabled = true;
+            submarineblock.GetComponent<Collider2D>().enabled = false;
+            submarineblock.GetComponent<TilemapRenderer>().enabled = false;
+            onsubmarine = true;
+        }
+    }
     /// <summary>
     /// 跳躍
     /// </summary>
@@ -119,6 +135,8 @@ public class Player : MonoBehaviour
     {
         if ((isGround || jump) && Input.GetKeyDown(KeyCode.X))
         {
+            jumpTimeCounter = jumpTime;
+            isJumping = true;
             isGround = false;
             timer = 0;
             rig.AddForce(new Vector2(0, height));
@@ -130,7 +148,23 @@ public class Player : MonoBehaviour
 
             ani.SetTrigger("Jump");
         }
-        if (!isGround)
+        if (isJumping == true && Input.GetKey(KeyCode.X))
+        {
+            if (jumpTimeCounter > 0)
+            {
+                rig.AddForce(new Vector2(0, height));
+                jumpTimeCounter -= Time.deltaTime;
+            }
+            else
+            {
+                isJumping = false;
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.X))
+        {
+            isJumping = false;
+        }
+        /*if (!isGround)
         {
             timer += Time.deltaTime;
             if (timer > 2f)
@@ -138,7 +172,7 @@ public class Player : MonoBehaviour
                 timer = 0;
                 rig.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
             }
-        }
+        }*/
 
 
     }
@@ -179,8 +213,6 @@ public class Player : MonoBehaviour
         {
             createobjectright.position = cancelduck.position;
         }
-
-        print("duck" + duckshot);
         ani.SetBool("ShotUp", Input.GetKey(KeyCode.UpArrow));
         ani.SetBool("Duck", Input.GetKey(KeyCode.DownArrow));
     }
@@ -195,10 +227,20 @@ public class Player : MonoBehaviour
             _Light.SetActive(_light);
         }
     }
+    private void Swim()
+    {
+        if (BossSwim.swim == true)
+        {
+            swimblock.GetComponent<Collider2D>().enabled = false;
+            swimblock.GetComponent<TilemapRenderer>().enabled = false;
+        }
+    }
 
     private void Awake()
     {
-        Health = GameObject.FindGameObjectsWithTag("Health");
+        Physics2D.IgnoreLayerCollision(9, 10);
+        HPText = GameObject.Find("HPText").GetComponent<Text>();
+        _scripthp = HP;
         if (GameObject.FindGameObjectsWithTag("Player").Length > 1)
         {
             Destroy(gameObject);
@@ -218,10 +260,19 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
+        if (onsubmarine == false)
+        {
+            Move();
+            Jump();
+        }
     }
     void Update()
     {
+        swimblock = GameObject.Find("禁止下水");
+        submarine = GameObject.Find("submarine");
+        submarineblock = GameObject.Find("Submarineblock");
+        HPText.text = "ENERGY:" + _scripthp.ToString("F0");
+        Swim();
         if (BossTeleport.teleport == true)
         {
             tele.enabled = true;
@@ -234,9 +285,12 @@ public class Player : MonoBehaviour
                 jumpTimes = 0;
             }
         }
-        Jump();
         Shoot();
-        Light();
+        if (submarine == false)
+        {
+
+            Light();
+        }
 
     }
 }

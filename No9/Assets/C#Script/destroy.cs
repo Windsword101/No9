@@ -14,7 +14,7 @@ public class destroy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(BossJump.doublejump == true)
+        if(BossTeleport.teleport == true)
         {
             Destroy(gameObject);
         }

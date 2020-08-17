@@ -16,7 +16,6 @@ public class BossJump : MonoBehaviour
     {
         if (doublejump == true)
         {
-            
             Destroy(gameObject);
         }
         

@@ -45,7 +45,6 @@ public class SwordBoss : Enemy1
     {
         scripthp -= damage;
         sliderHp.fillAmount = scripthp / hp;
-
     }
 
     private void Dead()

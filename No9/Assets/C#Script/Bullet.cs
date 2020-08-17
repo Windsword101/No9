@@ -17,24 +17,20 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            Destroy(collision.gameObject);
             Destroy(gameObject);
-            GameObject exp = Instantiate(Effect, collision.transform.position, collision.transform.rotation);
-            Destroy(exp, EffectTime);
+            collision.gameObject.GetComponent<Enemy1>().hittimes++;
+            if (collision.gameObject.GetComponent<Enemy1>().hittimes>= 2)
+            {
+                Destroy(collision.gameObject);
+                GameObject exp = Instantiate(Effect, collision.transform.position, collision.transform.rotation);
+                Destroy(exp, EffectTime);
+            }
         }
         if (collision.gameObject.name == "BossTeleport")
         {
             Destroy(collision.gameObject);
             Destroy(gameObject);
             BossTeleport.teleport = true;
-            GameObject exp = Instantiate(Effect, collision.transform.position, collision.transform.rotation);
-            Destroy(exp, EffectTime);
-        }
-        if (collision.gameObject.name == "BossJump")
-        {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-            BossJump.doublejump = true;
             GameObject exp = Instantiate(Effect, collision.transform.position, collision.transform.rotation);
             Destroy(exp, EffectTime);
         }
@@ -48,9 +44,19 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
             collision.gameObject.GetComponent<smallSwordBoss>().Hurt();
         }
+        if (collision.gameObject.name == "BossOctopus")
+        {
+            Destroy(gameObject);
+            collision.gameObject.GetComponent<BossOctopus>().Hurt();
+            if (collision.gameObject.GetComponent<BossOctopus>().scripthp <= 25)
+            {
+                GameObject exp = Instantiate(Effect, collision.transform.position, collision.transform.rotation);
+                Destroy(exp, EffectTime);
+            }
+        }
     }
-    
-    
+
+
     void Start()
     {
         spriteRenderer = GameObject.Find("Player").GetComponent<Transform>();

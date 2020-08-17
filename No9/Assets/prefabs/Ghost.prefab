@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: 1600027586389939634}
   - component: {fileID: 5869950981671125803}
   - component: {fileID: 8293761468237717095}
+  - component: {fileID: 754932755}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Enemy
@@ -207,9 +208,27 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &754932755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7259123406530750486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e78b2a56edeba4f988f66c85d3f3cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  ChaseDistance: 3
+  timer: 0
+  rb: {fileID: 0}
+  groundDetection: {fileID: 0}
+  hittimes: 0

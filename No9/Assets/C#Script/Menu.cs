@@ -22,8 +22,14 @@ public class Menu : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("Player");
-        player.transform.position = new Vector2(-5.96f, -2.1f);
-        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
+        if (player == null) { }
+        else
+        {
+            player.transform.position = new Vector2(-5.96f, -2.1f);
+            player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
+
+        }
+
     }
 
     public void Update()
@@ -71,12 +77,12 @@ public class Menu : MonoBehaviour
             AudioListener.pause = false;
             SoundButtonImage.sprite = SoundOpenSprite;
         }
-        else 
-        { 
+        else
+        {
             AudioListener.pause = true;
             SoundButtonImage.sprite = SoundCloseSprite;
         }
     }
     #endregion
-   
+
 }
