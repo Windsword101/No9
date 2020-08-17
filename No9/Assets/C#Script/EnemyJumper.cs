@@ -8,11 +8,6 @@ public class EnemyJumper : Enemy1
 {
     public int height = 500;
     public bool isGround = false;
-
-    private void Awake()
-    {
-        
-    }
     private void Update()
     {
         if (isGround == false) JumpChase();
@@ -49,7 +44,7 @@ public class EnemyJumper : Enemy1
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "ground")
+        if (collision.gameObject.tag == "ground"|| collision.gameObject.tag == "OnlyforBoss")
         {
             isGround = true;
 
@@ -57,7 +52,7 @@ public class EnemyJumper : Enemy1
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "ground")
+        if (collision.gameObject.tag == "ground" || collision.gameObject.tag == "OnlyforBoss")
         {
             isGround = false;
 

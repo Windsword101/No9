@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     //按越久跳躍高
     public float jumpTime;
     public GameObject submarine, swimblock, submarineblock;
+    public bool onsubmarine = false;
 
 
 
@@ -47,7 +48,6 @@ public class Player : MonoBehaviour
     private bool jump = false;
     private bool duckshot = false;
     private bool _light = false;
-    private bool onsubmarine = false;
     private float timer = 0;
     private float nextFire = 0;
     //按越久跳躍高
@@ -79,6 +79,21 @@ public class Player : MonoBehaviour
         ani.SetBool("RunShot", (h > 0 || h < 0) && Input.GetKey(KeyCode.C));
 
     }
+    private void SubmarineMove()
+    {
+        float y = Input.GetAxis("Vertical");
+        float h = Input.GetAxis("Horizontal");
+        if (h > 0)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+        else if (h < 0)
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
+        rig.AddForce(Vector3.right * h * speed);
+        rig.AddForce(Vector3.up * y * speed);
+    }
     /// <summary>
     /// 是否碰到地面、扣血
     /// </summary>
@@ -92,10 +107,20 @@ public class Player : MonoBehaviour
             rig.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         }
+        if (selfbody.gameObject.tag == "DeathZone")
+        {
+            Application.LoadLevel("GameOver");
+            _scripthp = 99f;
+        }
         if (selfbody.gameObject.tag == "Enemy" || selfbody.gameObject.tag == "SwordBoss" || selfbody.gameObject.tag == "BossOctopus")
         {
             _scripthp -= 8;
             ani.SetTrigger("Hurt");
+        }
+        if(selfbody.gameObject.name == "Toxic")
+        {
+            Application.LoadLevel("GameOver");
+            _scripthp = 99f;
         }
     }
     /// <summary>
@@ -111,10 +136,19 @@ public class Player : MonoBehaviour
         }
 
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "SwordBoss")
+        {
+            _scripthp -= 8;
+            ani.SetTrigger("Hurt");
+        }
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.name == "submarine" && Input.GetKeyDown(KeyCode.Z))
         {
+            gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
             submarine.transform.SetParent(gameObject.transform);
             submarine.transform.localPosition = new Vector3(0, 0, 0);
             submarine.transform.rotation = gameObject.transform.rotation;
@@ -126,6 +160,14 @@ public class Player : MonoBehaviour
             submarineblock.GetComponent<Collider2D>().enabled = false;
             submarineblock.GetComponent<TilemapRenderer>().enabled = false;
             onsubmarine = true;
+        }
+        if (collision.gameObject.name == "GoToUnderwater" && Input.GetKeyDown(KeyCode.Z))
+        {
+            submarine.transform.SetParent(null);
+            Destroy(submarine);
+            onsubmarine = false;
+            gameObject.GetComponent<Rigidbody2D>().gravityScale = 10;
+            gameObject.GetComponent<SpriteRenderer>().enabled = true;
         }
     }
     /// <summary>
@@ -235,10 +277,18 @@ public class Player : MonoBehaviour
             swimblock.GetComponent<TilemapRenderer>().enabled = false;
         }
     }
-
+    private void Dead()
+    {
+        if (_scripthp <= 0)
+        {
+            Application.LoadLevel("GameOver");
+            _scripthp = 99f;
+        }
+    }
     private void Awake()
     {
         Physics2D.IgnoreLayerCollision(9, 10);
+        Physics2D.IgnoreLayerCollision(8, 11);
         HPText = GameObject.Find("HPText").GetComponent<Text>();
         _scripthp = HP;
         if (GameObject.FindGameObjectsWithTag("Player").Length > 1)
@@ -265,13 +315,19 @@ public class Player : MonoBehaviour
             Move();
             Jump();
         }
+        if (onsubmarine == true)
+        {
+            SubmarineMove();
+        }
     }
     void Update()
     {
+        if (Application.loadedLevelName == "No9") gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         swimblock = GameObject.Find("禁止下水");
         submarine = GameObject.Find("submarine");
         submarineblock = GameObject.Find("Submarineblock");
         HPText.text = "ENERGY:" + _scripthp.ToString("F0");
+        Dead();
         Swim();
         if (BossTeleport.teleport == true)
         {

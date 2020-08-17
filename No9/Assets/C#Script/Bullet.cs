@@ -19,12 +19,19 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
             collision.gameObject.GetComponent<Enemy1>().hittimes++;
-            if (collision.gameObject.GetComponent<Enemy1>().hittimes>= 2)
+            if (collision.gameObject.GetComponent<Enemy1>().hittimes >= 2)
             {
                 Destroy(collision.gameObject);
                 GameObject exp = Instantiate(Effect, collision.transform.position, collision.transform.rotation);
                 Destroy(exp, EffectTime);
             }
+        }
+        if (collision.gameObject.tag == "EnemyJumper")
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+            GameObject exp = Instantiate(Effect, collision.transform.position, collision.transform.rotation);
+            Destroy(exp, EffectTime);
         }
         if (collision.gameObject.name == "BossTeleport")
         {
@@ -53,6 +60,14 @@ public class Bullet : MonoBehaviour
                 GameObject exp = Instantiate(Effect, collision.transform.position, collision.transform.rotation);
                 Destroy(exp, EffectTime);
             }
+        }
+        if (collision.gameObject.name == "gate")
+        {
+            gate.gatedestroy = true;
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+            GameObject exp = Instantiate(Effect, collision.transform.position, collision.transform.rotation);
+            Destroy(exp, EffectTime);
         }
     }
 

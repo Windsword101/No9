@@ -8,7 +8,7 @@ public class JumpBehaviour : StateMachineBehaviour
     private Rigidbody2D rig;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        rig = GameObject.FindGameObjectWithTag("SwordBoss").GetComponent<Rigidbody2D>();
+        rig.constraints = RigidbodyConstraints2D.FreezeRotation;
         rig.AddForce(new Vector2(0, height));
     }
 

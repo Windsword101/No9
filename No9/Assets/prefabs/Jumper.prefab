@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -1093759440011530701}
   m_Layer: 0
   m_Name: Jumper
-  m_TagString: Enemy
+  m_TagString: EnemyJumper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,6 +136,8 @@ MonoBehaviour:
   ChaseDistance: 3
   timer: 0
   rb: {fileID: 0}
+  groundDetection: {fileID: 0}
+  hittimes: 0
   height: 500
   isGround: 0
 --- !u!50 &-1093759440011530701
