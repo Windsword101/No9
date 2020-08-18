@@ -25,7 +25,6 @@ public class Teleport : MonoBehaviour
             if (collision.gameObject.name == "trigger1") player.transform.position = teleport.transform.position;
             if (collision.gameObject.name == "teleport") player.transform.position = trigger1.transform.position;
             if (collision.gameObject.name == "trigger") player.transform.position = grass.transform.position;
-            if (collision.gameObject.name == "DoubleJumpEnable") BossJump.doublejump = true;
         }
 
     }

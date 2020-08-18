@@ -7,6 +7,7 @@ public class BossOctopus : Enemy1
     public int hp;
     public int damage;
     public int scripthp;
+    public static bool octopus=false;
 
     private void Start()
     {
@@ -28,6 +29,7 @@ public class BossOctopus : Enemy1
         if (scripthp <= 0)
         {
             Destroy(gameObject);
+            octopus = true;
         }
     }
 }

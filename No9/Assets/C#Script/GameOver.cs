@@ -6,6 +6,10 @@ public class GameOver : MonoBehaviour
 {
     void Update()
     {
+        Invoke("anykeydown", 5f);
+    }
+    private void anykeydown()
+    {
         if (Input.anyKeyDown)
         {
             Application.LoadLevel("Menu");

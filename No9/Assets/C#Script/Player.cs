@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine.U2D;
 using UnityEngine.UI;
@@ -52,12 +54,112 @@ public class Player : MonoBehaviour
     private float nextFire = 0;
     //按越久跳躍高
     private float jumpTimeCounter;
+    private Text hintText;
+    private Image dialogue;
+    public static float hintTimer;
 
 
 
 
 
+    private void Awake()
+    {
+        hintText = GameObject.Find("dialogueText").GetComponent<Text>();
+        dialogue = GameObject.Find("IntoDialogue").GetComponent<Image>();
+        Physics2D.IgnoreLayerCollision(9, 10);
+        Physics2D.IgnoreLayerCollision(8, 11);
+        HPText = GameObject.Find("HPText").GetComponent<Text>();
+        _scripthp = HP;
+        if (GameObject.FindGameObjectsWithTag("Player").Length > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
 
+    }
+    void Start()
+    {
+        ani = GetComponent<Animator>();
+        rig = GetComponent<Rigidbody2D>();
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (onsubmarine == false)
+        {
+            Move();
+            Jump();
+        }
+        if (onsubmarine == true)
+        {
+            SubmarineMove();
+        }
+    }
+    void Update()
+    {
+        if (Application.loadedLevelName != "well")
+        {
+            hintTimer += Time.deltaTime;
+            if (hintTimer >= 5)
+            {
+                dialogue.enabled = false;
+                hintText.enabled = false;
+            }
+            if (BossSwim.swimhint == true)
+            {
+                hintText.text = "SOMETHING HAPPENS. CHECK IT OUT!";
+                dialogue.enabled = true;
+                hintText.enabled = true;
+
+                if (hintTimer >= 5)
+                {
+                    hintTimer = 0;
+                    BossSwim.swimhint = false;
+                }
+            }
+            if (gate.gatedestroyhint == true)
+            {
+                hintText.text = "YOU HAVE CLOSED THE SEWAGE SYSTEM";
+                dialogue.enabled = true;
+                hintText.enabled = true;
+                if (hintTimer >= 5)
+                {
+                    hintTimer = 0;
+                    gate.gatedestroyhint = false;
+                }
+            }
+
+        }
+        if (Application.loadedLevelName == "No9") gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        swimblock = GameObject.Find("禁止下水");
+        submarine = GameObject.Find("submarine");
+        submarineblock = GameObject.Find("Submarineblock");
+        HPText.text = "ENERGY:" + _scripthp.ToString("F0");
+        Dead();
+        Swim();
+        Shoot();
+        if (BossTeleport.teleport == true)
+        {
+            tele.enabled = true;
+        }
+        if (jump == true)
+        {
+            if (jumpTimes > 1 || timer > 1.9f)
+            {
+                jump = false;
+                jumpTimes = 0;
+            }
+        }
+        if (onsubmarine == false)
+        {
+            Light();
+        }
+
+    }
     /// <summary>
     /// 移動
     /// </summary>
@@ -111,16 +213,19 @@ public class Player : MonoBehaviour
         {
             Application.LoadLevel("GameOver");
             _scripthp = 99f;
+            onsubmarine = false;
         }
-        if (selfbody.gameObject.tag == "Enemy" || selfbody.gameObject.tag == "SwordBoss" || selfbody.gameObject.tag == "BossOctopus")
+        if (selfbody.gameObject.tag == "Enemy" || selfbody.gameObject.tag == "SwordBoss" || selfbody.gameObject.tag == "BossOctopus" || selfbody.gameObject.tag == "EnemyJumper")
         {
             _scripthp -= 8;
             ani.SetTrigger("Hurt");
         }
-        if(selfbody.gameObject.name == "Toxic")
+        if (selfbody.gameObject.name == "Toxic")
         {
             Application.LoadLevel("GameOver");
             _scripthp = 99f;
+            onsubmarine = false;
+
         }
     }
     /// <summary>
@@ -138,10 +243,14 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "SwordBoss")
+        if (collision.gameObject.tag == "SwordBoss")
         {
             _scripthp -= 8;
             ani.SetTrigger("Hurt");
+        }
+        if (collision.gameObject.name == "" && Input.GetKeyDown(KeyCode.Z))
+        {
+
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -168,6 +277,22 @@ public class Player : MonoBehaviour
             onsubmarine = false;
             gameObject.GetComponent<Rigidbody2D>().gravityScale = 10;
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        if (collision.gameObject.name == "DoubleJumpEnable" && Input.GetKeyDown(KeyCode.Z))
+        {
+            BossJump.doublejump = true;
+            hintTimer = 0;
+            hintText.text = "Press X twice to double jump";
+            dialogue.enabled = true;
+            hintText.enabled = true;
+
+        }
+        if (collision.gameObject.name == "GoToEnding")
+        {
+            hintTimer = 0;
+            hintText.text = "MISSION COMPLETE!";
+            dialogue.enabled = true;
+            hintText.enabled = true;
         }
     }
     /// <summary>
@@ -273,80 +398,25 @@ public class Player : MonoBehaviour
     {
         if (BossSwim.swim == true)
         {
-            swimblock.GetComponent<Collider2D>().enabled = false;
-            swimblock.GetComponent<TilemapRenderer>().enabled = false;
+            if (Application.loadedLevelName == "No9")
+            {
+                swimblock.GetComponent<Collider2D>().enabled = false;
+                swimblock.GetComponent<TilemapRenderer>().enabled = false;
+
+            }
         }
     }
     private void Dead()
     {
         if (_scripthp <= 0)
         {
+            submarine.transform.SetParent(null);
+            Destroy(submarine);
             Application.LoadLevel("GameOver");
             _scripthp = 99f;
+            onsubmarine = false;
+            gameObject.GetComponent<Rigidbody2D>().gravityScale = 10;
+            gameObject.GetComponent<SpriteRenderer>().enabled = true;
         }
-    }
-    private void Awake()
-    {
-        Physics2D.IgnoreLayerCollision(9, 10);
-        Physics2D.IgnoreLayerCollision(8, 11);
-        HPText = GameObject.Find("HPText").GetComponent<Text>();
-        _scripthp = HP;
-        if (GameObject.FindGameObjectsWithTag("Player").Length > 1)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-
-    }
-    void Start()
-    {
-        ani = GetComponent<Animator>();
-        rig = GetComponent<Rigidbody2D>();
-
-    }
-
-    private void FixedUpdate()
-    {
-        if (onsubmarine == false)
-        {
-            Move();
-            Jump();
-        }
-        if (onsubmarine == true)
-        {
-            SubmarineMove();
-        }
-    }
-    void Update()
-    {
-        if (Application.loadedLevelName == "No9") gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-        swimblock = GameObject.Find("禁止下水");
-        submarine = GameObject.Find("submarine");
-        submarineblock = GameObject.Find("Submarineblock");
-        HPText.text = "ENERGY:" + _scripthp.ToString("F0");
-        Dead();
-        Swim();
-        if (BossTeleport.teleport == true)
-        {
-            tele.enabled = true;
-        }
-        if (jump == true)
-        {
-            if (jumpTimes > 1 || timer > 1.9f)
-            {
-                jump = false;
-                jumpTimes = 0;
-            }
-        }
-        Shoot();
-        if (submarine == false)
-        {
-
-            Light();
-        }
-
     }
 }

@@ -21,6 +21,7 @@ public class SwordBoss : Enemy1
     }
     private void Update()
     {
+        speed = 6;
         sliderHp = GameObject.Find("Sliderhp").GetComponent<Image>();
         Attack();
         if (scripthp > 0) Chase();

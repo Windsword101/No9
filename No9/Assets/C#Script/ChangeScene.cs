@@ -68,6 +68,10 @@ public class ChangeScene : MonoBehaviour
                 LoadScene();
                 player.transform.position = GameObject.Find("gotounderwater").GetComponent<Transform>().position;
             }
+            else if (currentScene == "No9" && gameObject.name == "GoToEnding")
+            {
+                LoadScene();
+            }
             #endregion
             #region house切換場景
             else if (currentScene == "house" && gameObject.name == "GoToNo9")
@@ -133,8 +137,10 @@ public class ChangeScene : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            Player.hintTimer = 0;
             dialogue.enabled = true;
             dialogueText.enabled = true;
+            dialogueText.text = "press Z into room";
         }
     }
 

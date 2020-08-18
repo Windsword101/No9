@@ -5,6 +5,7 @@ using UnityEngine;
 public class gate : MonoBehaviour
 {
     public static bool gatedestroy = false;
+    public static bool gatedestroyhint = false;
     public GameObject triggertono9;
     // Start is called before the first frame update
     void Start()

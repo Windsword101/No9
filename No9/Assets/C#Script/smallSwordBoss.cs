@@ -19,6 +19,7 @@ public class smallSwordBoss : Enemy1
     }
     private void Update()
     {
+        speed = 6;
         Attack();
         if (scripthp > 0) Chase();
         Dead();
@@ -52,6 +53,7 @@ public class smallSwordBoss : Enemy1
             transform.Translate(new Vector2(0, 0));
             Destroy(gameObject, 3f);
             BossSwim.swim =true;
+            BossSwim.swimhint = true;
         }
     }
 

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class EnemyJumper : Enemy1

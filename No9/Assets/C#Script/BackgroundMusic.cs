@@ -4,6 +4,6 @@ public class BackgroundMusic : MonoBehaviour
 {
     private void Awake()
     {
-        Application.LoadLevel("Opening");
+        Application.LoadLevel("Menu");
     }
 }

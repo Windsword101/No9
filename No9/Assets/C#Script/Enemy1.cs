@@ -14,8 +14,7 @@ public class Enemy1 : MonoBehaviour
     public int hittimes;
     private void Awake()
     {
-        //groundDetection = transform.GetChild(0);
-
+       //groundDetection = transform.GetChild(0);
     }
     private void Start()
     {
@@ -36,7 +35,7 @@ public class Enemy1 : MonoBehaviour
 
     protected virtual void Move()
     {
-        //RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down * 2, 2f);
+       // RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 2f);
         if (Vector2.Distance(transform.position, target.position) > ChaseDistance)
         {
             transform.Translate(Vector2.right * speed * Time.deltaTime);

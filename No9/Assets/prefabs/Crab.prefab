@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1028307938717768199}
   - component: {fileID: 7596216204492044312}
   - component: {fileID: 1244062244270175697}
+  - component: {fileID: 1367589328878306282}
   m_Layer: 0
   m_Name: Crab
   m_TagString: Enemy
@@ -140,3 +141,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1367589328878306282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4723495627824139649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e78b2a56edeba4f988f66c85d3f3cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  ChaseDistance: 3
+  timer: 0
+  rb: {fileID: 0}
+  groundDetection: {fileID: 0}
+  hittimes: 0

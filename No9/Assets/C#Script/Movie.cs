@@ -14,7 +14,7 @@ public class Movie : MonoBehaviour
     {
         if(video.isPlaying == false)
         {
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("BackgroundMusic");
         }
     }
 }
